@@ -33,14 +33,14 @@ resource "aws_lb" "umf_prod_lb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.umf_prod_lb_http.id]
-  subnets = module.vpc.public_subnets
+  subnets = [aws_subnet.umf_prod_public_subnet_eu_west_2a, aws_subnet.umf_prod_public_subnet_eu_west_2b]
 }
 
 resource "aws_lb_target_group" "umf_prod_lb_tg" {
   name     = "umf-prod-asg"
   port     = 8000
   protocol = "HTTP"
-  vpc_id   = module.vpc.vpc_id
+  vpc_id   = aws_vpc.umf_prod_vpc.id
 
   health_check {
     path = "/healthcheck"

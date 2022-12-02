@@ -18,7 +18,12 @@ variable "deployment_bucket" {
   description = "code deployment s3 bucket"
 }
 
-# variable "default_vpc_id" {
-#   type = number
-#   description = "id of the account's default vpc"
-# }
+variable "default_vpc_id" {
+  type = number
+  description = "id of the account's default vpc"
+}
+
+variable "default_vpc_subnet_id" {
+  type = string
+  description = "id of a subnet in the default vpc"
+}

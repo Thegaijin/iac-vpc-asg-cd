@@ -49,6 +49,6 @@ data "cloudinit_config" "user_data" {
   }
 }
 
-# data "vpc" "default" {
-#   id = var.default_vpc_id
-# }
+data "vpc" "default" {
+  id = var.default_vpc_id
+}
