@@ -111,15 +111,12 @@ resource "aws_route_table_association" "umf_prod_public_2b_rta" {
 
 // associating requester_route_table with public_subnet
 resource "aws_route_table_association" "requester_rta" {
-  provider                  = aws.requester
-  subnet_id                 = aws_subnet.umf_prod_public_subnet_eu_west_2a.id
-  route_table_id            = aws_route_table.requester_rt.id
+  subnet_id       = aws_subnet.umf_prod_public_subnet_eu_west_2a.id
+  route_table_id  = aws_route_table.requester_rt.id
 }
 
 //associating accepter_route_table with private_subnet
 resource "aws_route_table_association" "accepter_rta" {
-  provider = aws.target
-  subnet_id       = var.default_vpc_subnet_id
-  route_table_id  = aws_route_table.accepter_rt.id
-  vpc_peering_connection_id = aws_vpc_peering_connection_accepter.peering.id
+    subnet_id       = var.default_vpc_subnet_id
+    route_table_id  = aws_route_table.accepter_rt.id
 }

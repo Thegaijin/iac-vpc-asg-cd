@@ -15,15 +15,15 @@ resource "aws_vpc_peering_connection" "umf_peer" {
   })
 }
 
-resource "aws_vpc_peering_connection_accepter" "peering" {
-  provider                  = aws.target
-  vpc_peering_connection_id = aws_vpc_peering_connection.umf_peer.id
-  auto_accept               = true
+# resource "aws_vpc_peering_connection_accepter" "peering" {
+#   provider                  = aws.target
+#   vpc_peering_connection_id = aws_vpc_peering_connection.umf_peer.id
+#   auto_accept               = true
 
-  tags = merge(var.tags, {
-    Name = "VPC Peering between ${aws_vpc.umf_prod_vpc.name} and ${var.target_name} VPCs"
-  })
-}
+#   tags = merge(var.tags, {
+#     Name = "VPC Peering between ${aws_vpc.umf_prod_vpc.name} and ${var.target_name} VPCs"
+#   })
+# }
 
 # resource "aws_vpc_peering_connection_options" "peering_requester" {
 #   provider                  = aws.source
