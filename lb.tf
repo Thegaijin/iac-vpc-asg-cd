@@ -33,7 +33,7 @@ resource "aws_lb" "umf_prod_lb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.umf_prod_lb_http.id]
-  subnets = [aws_subnet.umf_prod_public_subnet_eu_west_2a, aws_subnet.umf_prod_public_subnet_eu_west_2b]
+  subnets = [aws_subnet.umf_prod_public_subnet_eu_west_2a.id, aws_subnet.umf_prod_public_subnet_eu_west_2b.id]
 }
 
 resource "aws_lb_target_group" "umf_prod_lb_tg" {
