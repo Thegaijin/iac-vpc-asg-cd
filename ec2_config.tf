@@ -49,7 +49,8 @@ resource "aws_autoscaling_group" "umf_prod_asg" {
 
   metrics_granularity = "1Minute"
 
-  vpc_zone_identifier = [aws_subnet.umf_prod_public_subnet_eu_west_2a.id, aws_subnet.umf_prod_public_subnet_eu_west_2b.id]
+  # vpc_zone_identifier = [aws_subnet.umf_prod_public_subnet_eu_west_2a.id, aws_subnet.umf_prod_public_subnet_eu_west_2b.id]
+    vpc_zone_identifier = module.vpc.public_subnets
 
   # Required to redeploy without an outage.
   lifecycle {

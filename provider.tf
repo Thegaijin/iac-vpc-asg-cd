@@ -3,12 +3,12 @@ provider "aws" {
 }
 
 provider "aws" {
-  alias  = "target"
+  alias  = "requester"
   region = "eu-west-2"
 }
 
 provider "aws" {
-  alias  = "requester"
+  alias  = "acceptor"
   region = "me-south-1"
 }
 
