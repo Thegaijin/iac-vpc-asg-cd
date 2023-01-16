@@ -39,3 +39,14 @@ data "cloudinit_config" "user_data" {
     })
   }
 }
+
+data "aws_subnets" "prod" {
+  filter {
+    name   = "vpc-id"
+    values = [module.vpc.vpc_id]
+  }
+
+  tags = {
+    Env = "prod"
+  }
+}
