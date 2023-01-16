@@ -16,9 +16,10 @@ $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev
 sudo sh -c 'echo \
 "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
 sudo apt-get update
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose redis \
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose \
   docker-compose-plugin postgresql-client-common postgresql-11 postgresql-client-11
 sudo chmod 666 /var/run/docker.sock
 sudo usermod -aG docker $USER
 sudo newgrp docker
+(crontab -l 2>/dev/null; echo "0 0 * * * docker system prune -af") | crontab -
 exit

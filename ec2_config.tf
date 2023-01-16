@@ -8,6 +8,9 @@ resource "aws_launch_configuration" "umf_prod_lc" {
   # associate_public_ip_address = true
 
   user_data = data.cloudinit_config.user_data.rendered
+  root_block_device  {
+    volume_size = "30"
+  }
   # user_data = file("user-data.sh")
   # user_data = <<-EOF
   # #!/bin/bash -ex
@@ -28,9 +31,9 @@ resource "aws_launch_configuration" "umf_prod_lc" {
 resource "aws_autoscaling_group" "umf_prod_asg" {
   name = "${aws_launch_configuration.umf_prod_lc.name}-asg"
 
-  min_size         = 1
+  min_size         = 2
   max_size         = 3
-  desired_capacity = 1
+  desired_capacity = 2
 
   # health_check_type       = "ELB"
   # load_balancers          = [
