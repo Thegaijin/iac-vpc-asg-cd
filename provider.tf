@@ -1,6 +1,15 @@
 provider "aws" {
-  profile = "default"
   region  = "eu-west-2"
+}
+
+provider "aws" {
+  alias  = "requester"
+  region = "eu-west-2"
+}
+
+provider "aws" {
+  alias  = "acceptor"
+  region = "me-south-1"
 }
 
 terraform {
