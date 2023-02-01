@@ -18,15 +18,6 @@ data "aws_iam_role" "ec2_iam_role" {
   name = "ec2-codedeployer"
 }
 
-# data "s3_bucket" "bucket_name" {
-#   name = "umf-backend-deployment"
-# }
-
-# The provider hashicorp/aws does not support data source "aws_codedeploy_app"
-# data "aws_codedeploy_app" "umf_prod_deployment" {
-#   name = "umf-backend-deployment"
-# }
-
 data "cloudinit_config" "user_data" {
   part {
     content_type = "text/x-shellscript"
@@ -49,6 +40,13 @@ data "cloudinit_config" "user_data" {
   }
 }
 
-# data "vpc" "default" {
-#   id = var.default_vpc_id
-# }
+data "aws_subnets" "prod" {
+  filter {
+    name   = "vpc-id"
+    values = [module.vpc.vpc_id]
+  }
+
+  tags = {
+    Env = "prod"
+  }
+}
