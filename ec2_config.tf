@@ -31,7 +31,7 @@ resource "aws_launch_configuration" "umf_prod_lc" {
 resource "aws_autoscaling_group" "umf_prod_asg" {
   name = "${aws_launch_configuration.umf_prod_lc.name}-asg"
 
-  min_size         = 1
+  min_size         = 2
   max_size         = 3
   desired_capacity = 2
 
